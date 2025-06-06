@@ -7,3 +7,32 @@ html{
     font-family: 'Josefin Sans', sans-serif;
     color: $fg-main;
 }
+
+body{
+    margin: 0;
+    padding: 0;
+}
+
+.w100{
+    width: 100%;
+}
+
+.tri-page{
+    width: 80%;
+    margin: auto;
+    margin-top: 50px;
+}
+
+.two-column-layout{
+    display: flex;
+}
+
+.left-column{
+    width: 300px;
+    padding: 20px;
+}
+
+.right-column{
+    flex: 1;
+    padding: 20px;
+}
