@@ -4,7 +4,15 @@
             Left col
         </div>
         <div class="right-column">
-            Right col
+            <div *ngIf="loadingBlogs">
+                Loading...
+            </div>
+            <div *ngIf="blogs != null && blogs.length > 0">
+                <blog-row *ngFor="let blog of blogs" [blog]="blog"></blog-row>
+            </div>
+            <div *ngIf="blogs != null && blogs.length == 0">
+                No blogs found
+            </div>
         </div>
     </div>
 </div>
