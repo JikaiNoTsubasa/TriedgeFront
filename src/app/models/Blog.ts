@@ -3,4 +3,5 @@ export interface Blog {
     title: string;
     content: string;
     image: string;
+    publishedDate: Date | null;
 }
