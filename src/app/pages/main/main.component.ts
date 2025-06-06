@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { TriService } from '../../services/TriService';
 
 @Component({
   selector: 'app-main',
@@ -8,4 +9,5 @@ import { Component } from '@angular/core';
 })
 export class MainComponent {
 
+  triService = inject(TriService);
 }
