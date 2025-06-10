@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { UserService } from '../../services/UserService';
 
 export class MenuItem {
   title: string;
@@ -16,11 +17,8 @@ export class MenuItem {
 })
 export class TopMenuComponent {
 
+  userService = inject(UserService);
+
   title = 'Triedge';
 
-  items: MenuItem[] = [
-    { title: 'Home', link: '/' },
-    { title: 'Blog', link: '/blog' },
-    { title: 'Login', link: '/login' },
-  ];
 }

@@ -2,6 +2,10 @@
     <div class="menu-center">
         <img src="/images/logo_blog.svg" class="menu-logo"/>
         <!--<span class="menu-title">{{title}}</span>-->
-        <a [routerLink]="item.link" routerLinkActive="selected" [routerLinkActiveOptions]="{exact: true}" class="menu-item" *ngFor="let item of items; let i = index">{{item.title}}</a>
+        <!--<a [routerLink]="item.link" routerLinkActive="selected" [routerLinkActiveOptions]="{exact: true}" class="menu-item" *ngFor="let item of items; let i = index">{{item.title}}</a>-->
+        <a routerLink="/" routerLinkActive="selected" [routerLinkActiveOptions]="{exact: true}" class="menu-item">Home</a>
+        <a routerLink="/login" routerLinkActive="selected" [routerLinkActiveOptions]="{exact: true}" class="menu-item" *ngIf="userService.getUser() == null">Login</a>
+        <a routerLink="/manage-blogs" routerLinkActive="selected" [routerLinkActiveOptions]="{exact: true}" class="menu-item" *ngIf="userService.getUser() != null">Blogs</a>
+        <a routerLink="/disconnect" routerLinkActive="selected" [routerLinkActiveOptions]="{exact: true}" class="menu-item" *ngIf="userService.getUser() != null">Logout</a>
     </div>
 </div>
