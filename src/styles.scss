@@ -18,21 +18,59 @@ body{
 }
 
 .tri-page{
-    width: 80%;
+    width: 50%;
     margin: auto;
     margin-top: 50px;
+
+    @media (max-width: 800px) {
+        width: 100%;
+        margin: 0;
+        margin-top: 20px;
+    }
 }
 
 .two-column-layout{
     display: flex;
+    flex-wrap: wrap; // Pour gérer le responsive
+    
+
+    @media (max-width: 800px) {
+        flex-direction: column;
+        .left-column,
+        .right-column{
+            max-width: none;
+            min-width: 0;
+            width: 100%;
+        }
+        
+    }
 }
 
 .left-column{
-    width: 300px;
+    flex: 0 0 200px;
+    max-width: 200px;
     padding: 20px;
+    box-sizing: border-box;
 }
 
 .right-column{
-    flex: 1;
+    flex: 1 1 0;
     padding: 20px;
+    box-sizing: border-box;
+}
+
+.bbutton{
+    text-decoration: none;
+    outline: 0;
+    border: 1px solid $fg-primary;
+    padding: 5px 20px;
+    border-radius: 20px;
+    background-color: $bg-main;
+    color: $fg-main;
+    cursor: pointer;
+}
+
+.bbutton:hover{
+    background-color: $fg-primary;
+    color: $bg-main;
 }

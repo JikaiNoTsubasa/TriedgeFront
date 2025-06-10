@@ -1,6 +1,7 @@
 <div class="top-menu">
     <div class="menu-center">
-        <span class="menu-title">{{title}}</span>
-        <a routerLink="{{item.link}}" *ngFor="let item of items">{{item.title}}</a>
+        <img src="/images/logo_blog.svg" class="menu-logo"/>
+        <!--<span class="menu-title">{{title}}</span>-->
+        <a [routerLink]="item.link" routerLinkActive="selected" [routerLinkActiveOptions]="{exact: true}" class="menu-item" *ngFor="let item of items; let i = index">{{item.title}}</a>
     </div>
 </div>

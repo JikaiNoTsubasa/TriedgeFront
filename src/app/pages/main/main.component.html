@@ -1,7 +1,8 @@
 <div class="tri-page">
     <div class="two-column-layout">
         <div class="left-column">
-            Left col
+            Filters<br><br>
+            <button class="bbutton w100" (click)="refreshBlogs()">Refresh</button>
         </div>
         <div class="right-column">
             <div *ngIf="loadingBlogs">

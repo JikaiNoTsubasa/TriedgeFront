@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
@@ -9,7 +10,7 @@ export class MenuItem {
 @Component({
   selector: 'app-top-menu',
   standalone: true,
-  imports: [ RouterModule ],
+  imports: [ RouterModule, CommonModule ],
   templateUrl: './top-menu.component.html',
   styleUrl: './top-menu.component.scss'
 })
