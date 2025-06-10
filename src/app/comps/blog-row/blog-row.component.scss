@@ -1,8 +1,40 @@
 @use '../../styles/variables' as *;
 
+.blog-item{
+    margin-bottom: 50px;
+}
+
 .blog-image img {
     width: 100%;
     height: 200px;
     object-fit: cover;
     object-position: center;
+}
+
+.blog-title a{
+    display: block;
+    margin-bottom: 10px;
+    width: 100%;
+    text-decoration: none;
+    color: $fg-main;
+    font-size: 30px;
+    box-sizing: border-box;
+    border-bottom: 1px solid $fg-primary;
+}
+
+.blog-content{
+    display: block;
+    margin-top: 10px;
+}
+
+.blog-menu{
+    display: block;
+    margin-top: 10px;
+}
+
+.blog-menu a{
+    display: block;
+    text-decoration: none;
+    color: $fg-primary;
+    cursor: pointer;
 }

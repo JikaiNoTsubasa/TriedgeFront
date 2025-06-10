@@ -1,5 +1,14 @@
-<div>
+<div class="blog-item">
+    <div class="blog-title">
+        <a routerLink="/blog/{{blog.slug}}">{{blog.title}}</a>
+    </div>
     <div class="blog-image">
         <img src={{blog.image}} />
+    </div>
+    <div class="blog-content">
+        {{blog.content | shrink:200}}
+    </div>
+    <div class="blog-menu">
+        <a routerLink="/blog/{{blog.slug}}"><i class="fa-solid fa-arrow-right"></i> Read more</a>
     </div>
 </div>
