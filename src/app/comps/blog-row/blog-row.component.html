@@ -6,6 +6,7 @@
         <img src={{blog.image}} />
     </div>
     <div class="blog-content">
+        <span class="blog-date">{{blog.owner.name}} {{blog.publishedDate | date:'dd/MM/yyyy'}}</span>
         {{blog.content | shrink:200}}
     </div>
     <div class="blog-menu">

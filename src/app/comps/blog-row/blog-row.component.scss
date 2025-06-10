@@ -22,6 +22,10 @@
     border-bottom: 1px solid $fg-primary;
 }
 
+.blog-title a:hover{
+    color: $fg-primary;
+}
+
 .blog-content{
     display: block;
     margin-top: 10px;
@@ -37,4 +41,11 @@
     text-decoration: none;
     color: $fg-primary;
     cursor: pointer;
+}
+
+.blog-date{
+    display: block;
+    color: $fg-primary;
+    font-size: 12px;
+    margin-bottom: 5px;
 }
