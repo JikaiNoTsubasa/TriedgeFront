@@ -1,6 +1,6 @@
 <div class="top-menu">
     <div class="menu-center">
         <span class="menu-title">{{title}}</span>
-
+        <a routerLink="{{item.link}}" *ngFor="let item of items">{{item.title}}</a>
     </div>
 </div>

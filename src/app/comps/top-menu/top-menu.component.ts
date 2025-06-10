@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { RouterModule } from '@angular/router';
 
 export class MenuItem {
   title: string;
@@ -8,7 +9,7 @@ export class MenuItem {
 @Component({
   selector: 'app-top-menu',
   standalone: true,
-  imports: [],
+  imports: [ RouterModule ],
   templateUrl: './top-menu.component.html',
   styleUrl: './top-menu.component.scss'
 })
@@ -19,5 +20,6 @@ export class TopMenuComponent {
   items: MenuItem[] = [
     { title: 'Home', link: '/' },
     { title: 'Blog', link: '/blog' },
+    { title: 'Login', link: '/login' },
   ];
 }
