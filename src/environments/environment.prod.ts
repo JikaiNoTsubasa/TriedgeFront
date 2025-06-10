@@ -1,4 +1,4 @@
 export const environment = {
     production: true,
-    apiUrl: 'http://api.triedge.fr'
+    apiUrl: 'https://api.triedge.fr'
 };
