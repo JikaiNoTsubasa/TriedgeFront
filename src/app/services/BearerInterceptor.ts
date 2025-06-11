@@ -7,7 +7,7 @@ import { Router } from "@angular/router";
 export function provideBearerInterceptor(req: HttpRequest<any>, next: HttpHandlerFn): Observable<HttpEvent<any>> {
     let auth = inject(AuthService);
     let router = inject(Router);
-    let token = localStorage.getItem('token');
+    let token = localStorage.getItem('tri-token');
     if (token && !req.url.includes('.well-known/openid-configuration')) {
         req = req.clone({
             setHeaders: {

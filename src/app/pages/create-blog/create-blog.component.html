@@ -1,0 +1,10 @@
+<div class="tri-page">
+    <h1>New Blog</h1>
+    <form [formGroup]="createBlogForm" (ngSubmit)="onSubmit()">
+        <input type="text" placeholder="Title" formControlName="name" class="tri-text-input w100"/>
+        <br><br>
+        <markdown-editor formControlName="content"></markdown-editor>
+        <br><br>
+        <button class="bbutton" [disabled]="!createBlogForm.valid">Create</button>
+    </form>
+</div>

@@ -1,6 +1,13 @@
 <div class="tri-page" *ngIf="blog != null">
-    <img class="blog-image" src={{blog.image}} />
-    <h1>{{blog.title}}</h1>
+    <div class="blog-page">
+        <a routerLink="/" class="tri-link"><i class="fa-solid fa-arrow-left"></i> Back</a>
+        <br><br>
+        <img class="blog-image" src={{blog.image}} />
+        <h1>{{blog.title}}</h1>
+        <span class="tri-chip" *ngFor="let category of blog.categories">{{category.name}}</span>
+        <markdown [data]="blog.content"></markdown>
+
+    </div>
 </div>
 <div class="tri-page" *ngIf="blog == null">
     <h1>No blog found</h1>

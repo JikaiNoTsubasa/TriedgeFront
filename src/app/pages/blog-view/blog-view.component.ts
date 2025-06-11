@@ -1,12 +1,13 @@
 import { Component, inject } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterModule } from '@angular/router';
 import { TriService } from '../../services/TriService';
 import { Blog } from '../../models/Blog';
 import { CommonModule } from '@angular/common';
+import { MarkdownModule } from 'ngx-markdown';
 
 @Component({
   selector: 'app-blog-view',
-  imports: [ CommonModule ],
+  imports: [ CommonModule, MarkdownModule, RouterModule ],
   templateUrl: './blog-view.component.html',
   styleUrl: './blog-view.component.scss'
 })
