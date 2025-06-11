@@ -20,7 +20,7 @@
             <td>{{blog.updatedAt | date: 'dd/MM/yyyy HH:mm'}}</td>
             <td>{{blog.publishedDate | date: 'dd/MM/yyyy HH:mm'}}</td>
             <td>
-                <a routerLink="/blog/{{blog.slug}}" class="tri-link"><i class="fa-solid fa-pen-to-square"></i> Edit</a>
+                <a routerLink="/manage-blogs/edit/{{blog.id}}" class="tri-link"><i class="fa-solid fa-pen-to-square"></i> Edit</a>
             </td>
         </tr>
     </table>

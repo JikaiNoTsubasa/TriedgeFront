@@ -1,8 +1,9 @@
 import { Component, forwardRef, Input } from '@angular/core';
-import { NG_VALUE_ACCESSOR } from '@angular/forms';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Component({
   selector: 'markdown-editor',
+  standalone: true,
   imports: [],
   templateUrl: './markdown-editor.component.html',
   styleUrl: './markdown-editor.component.scss',
@@ -14,11 +15,10 @@ import { NG_VALUE_ACCESSOR } from '@angular/forms';
     }
   ]
 })
-export class MarkdownEditorComponent {
+export class MarkdownEditorComponent implements ControlValueAccessor{
 
-  @Input() content: string = '';
+  content: string = '';
   @Input() placeholder: string = 'Content';
-  @Input() contentRows: number = 4;
 
   private onChange = (value: string | null) => {};
   private onTouched = () => {};

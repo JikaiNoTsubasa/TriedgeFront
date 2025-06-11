@@ -80,6 +80,12 @@ body{
     color: $bg-main;
 }
 
+.bbutton:disabled{
+    border: 1px solid $bg-disabled;
+    color: $bg-main;
+    cursor: not-allowed;
+}
+
 .tri-chip{
     display: inline-block;
     text-decoration: none;

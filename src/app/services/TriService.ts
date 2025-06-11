@@ -39,6 +39,10 @@ export class TriService {
         return this.http.get<Blog[]>(`${this.getEnvUrl()}/api/myblogs`);
     }
 
+    fetchMyBlogById(id: number):Observable<Blog> {
+        return this.http.get<Blog>(`${this.getEnvUrl()}/api/myblog/${id}`);
+    }
+
     createBlog(title: string, content: string, image?: string): Observable<Blog> {
         let data: any = {};
         data.title = title;
@@ -47,5 +51,15 @@ export class TriService {
             data.image = image;
         }
         return this.http.post<Blog>(`${this.getEnvUrl()}/api/blog`, data);
+    }
+
+    updateMyBlog(id: number, title: string, content: string, image?: string): Observable<Blog> {
+        let data: any = {};
+        data.title = title;
+        data.content = content;
+        if (image){
+            data.image = image;
+        }
+        return this.http.put<Blog>(`${this.getEnvUrl()}/api/myblog/${id}`, data);
     }
 }

@@ -6,12 +6,14 @@ import { BlogStatus } from '../models/Blog';
 })
 export class BlogStatusPipe implements PipeTransform {
 
-  transform(value: BlogStatus, ...args: unknown[]): string {
+  transform(value: BlogStatus, ...args: string[]): string {
+    let statusName = "";
+    if (args.length > 0) statusName = ' '+args[0];
     switch (value) {
       case BlogStatus.DRAFT:
-        return '<i class="fa-solid fa-circle-half-stroke"></i>';
+        return '<i class="fa-solid fa-circle-half-stroke"></i>' + statusName;
       case BlogStatus.PUBLISHED:
-        return '<i class="fa-solid fa-circle-check"></i>';
+        return '<i class="fa-solid fa-circle-check"></i>' + statusName;
     }
   }
 

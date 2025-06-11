@@ -1,0 +1,55 @@
+<div class="tri-page">
+    <a routerLink="/manage-blogs" class="tri-link"><i class="fa-solid fa-arrow-left"></i> Back</a>
+    <h1>Edit Blog</h1>
+
+    <div class="row" *ngIf="blog != null">
+        <div class="col col-9">
+            <form [formGroup]="editBlogForm" (ngSubmit)="onSubmitUpdate()">
+                <input type="text" placeholder="Title" formControlName="name" class="tri-text-input w100"/>
+                <br><br>
+                <markdown-editor formControlName="content"></markdown-editor>
+                <br><br>
+                <div class="row">
+                    <div class="col col-6">
+                        <input type="text" placeholder="Image link" formControlName="image" class="tri-text-input w100"/>
+                    </div>
+                    <div class="col col-6">
+        
+                    </div>
+                </div>
+                <br><br>
+                <button class="bbutton">Update</button>
+            </form>
+            <br><br>
+            <span *ngIf="message != null" style="color: green;">{{message}}</span>
+
+        </div>
+
+        <div class="col col-3">
+            <table class="w100">
+                <tr>
+                    <td>Created:</td><td>{{blog.createdAt | date: 'dd/MM/yyyy HH:mm'}}</td>
+                </tr>
+                <tr>
+                    <td>Updated:</td><td>{{blog.updatedAt | date: 'dd/MM/yyyy HH:mm'}}</td>
+                </tr>
+                <tr>
+                    <td>Published:</td><td>{{blog.publishedDate | date: 'dd/MM/yyyy HH:mm'}}</td>
+                </tr>
+                <tr>
+                    <td>Status:</td><td [innerHTML]="blog.status | blogStatus: blog.status"></td>
+                </tr>
+                <tr>
+                    <td>Owner:</td><td>{{blog.owner.name}}</td>
+                </tr>
+            </table>
+            <br>
+            <button class="bbutton w100" (click)="onPublish()" *ngIf="blog.status == 'DRAFT'">Publish</button>
+            <button class="bbutton w100" (click)="onUnpublish()" *ngIf="blog.status == 'PUBLISHED'">Set to DRAFT</button>
+            <br><br>
+            <button class="bbutton w100" (click)="onDelete()">Delete</button>
+        </div>
+    </div>
+
+
+</div>
