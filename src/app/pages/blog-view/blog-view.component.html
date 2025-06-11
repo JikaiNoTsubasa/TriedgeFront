@@ -1,0 +1,7 @@
+<div class="tri-page" *ngIf="blog != null">
+    <img class="blog-image" src={{blog.image}} />
+    <h1>{{blog.title}}</h1>
+</div>
+<div class="tri-page" *ngIf="blog == null">
+    <h1>No blog found</h1>
+</div>

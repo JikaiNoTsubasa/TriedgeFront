@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { UserService } from '../../services/UserService';
+import { AuthService } from '../../services/AuthService';
 
 export class MenuItem {
   title: string;
@@ -17,7 +17,7 @@ export class MenuItem {
 })
 export class TopMenuComponent {
 
-  userService = inject(UserService);
+  authService = inject(AuthService);
 
   title = 'Triedge';
 

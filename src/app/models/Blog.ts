@@ -1,3 +1,4 @@
+import { Category } from "./Category";
 import { User } from "./User";
 
 export interface Blog {
@@ -10,4 +11,5 @@ export interface Blog {
     createAt: Date | null;
     updatedAt: Date | null;
     owner: User;
+    categories: Category[] | null;
 }

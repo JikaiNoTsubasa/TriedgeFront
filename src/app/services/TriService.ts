@@ -30,4 +30,8 @@ export class TriService {
     fetchBlogs():Observable<Blog[]> {
         return this.http.get<Blog[]>(`${this.getEnvUrl()}/api/public/blogs`);
     }
+
+    fetchBlogBySlug(slug: string):Observable<Blog> {
+        return this.http.get<Blog>(`${this.getEnvUrl()}/api/blog/${slug}`);
+    }
 }

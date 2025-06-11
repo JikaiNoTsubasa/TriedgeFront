@@ -4,20 +4,16 @@ import { firstValueFrom } from "rxjs";
 import { jwtDecode } from "jwt-decode";
 import { TriService } from "./TriService";
 import { JwtPayload } from "../models/DTO/JwtPayload";
+import { User } from "../models/User";
 
 @Injectable({
     providedIn: 'root'
 })
 export class AuthService {
-    constructor() { }
 
     triService = inject(TriService);
     router = inject(Router);
 
-    ngOnInit() {
-        console.log("Init auth service");
-        // this.initGoogleLogin();
-    }
 
     async login(login: string, password: string) {
         let res = await firstValueFrom(this.triService.login(login, password));
@@ -31,7 +27,7 @@ export class AuthService {
     
     logout() {
         localStorage.removeItem('tri-token');
-        this.router.navigate(['login']);
+        this.router.navigate(['']);
     }
 
     getUserFromToken() {

@@ -4,9 +4,6 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { TriService } from '../../services/TriService';
 import { AuthService } from '../../services/AuthService';
 import { Router } from '@angular/router';
-import { User } from '../../models/User';
-import { UserService } from '../../services/UserService';
-import { firstValueFrom } from 'rxjs';
 
 @Component({
   selector: 'app-login',
@@ -20,7 +17,6 @@ export class LoginComponent {
   triService = inject(TriService);
   authService = inject(AuthService);
   router = inject(Router);
-  userService = inject(UserService);
 
   loginForm = new FormGroup({
     login: new FormControl('', Validators.required),
@@ -35,8 +31,8 @@ export class LoginComponent {
       this.isLoginInProgress = true;
     try{
       let result : boolean = await this.authService.login(this.loginForm.value.login ?? '', this.loginForm.value.password ?? '');
-      let payload = this.authService.getUserFromToken();
-      if (payload) this.userService.setUser(await firstValueFrom(this.triService.getUser(payload.userid)));
+      // let payload = this.authService.getUserFromToken();
+      // if (payload) this.userService.setUser(await firstValueFrom(this.triService.getUser(payload.userid)));
       this.isLoginInProgress = false;
       if (result) this.router.navigate(['manage-blogs']);
 
