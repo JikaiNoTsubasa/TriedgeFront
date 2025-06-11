@@ -38,4 +38,14 @@ export class TriService {
     fetchMyBlogs():Observable<Blog[]> {
         return this.http.get<Blog[]>(`${this.getEnvUrl()}/api/myblogs`);
     }
+
+    createBlog(title: string, content: string, image?: string): Observable<Blog> {
+        let data: any = {};
+        data.title = title;
+        data.content = content;
+        if (image){
+            data.image = image;
+        }
+        return this.http.post<Blog>(`${this.getEnvUrl()}/api/blog`, data);
+    }
 }

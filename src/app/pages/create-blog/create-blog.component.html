@@ -1,10 +1,19 @@
 <div class="tri-page">
     <h1>New Blog</h1>
-    <form [formGroup]="createBlogForm" (ngSubmit)="onSubmit()">
+    <form [formGroup]="createBlogForm" (ngSubmit)="onSubmitCreate()">
         <input type="text" placeholder="Title" formControlName="name" class="tri-text-input w100"/>
         <br><br>
         <markdown-editor formControlName="content"></markdown-editor>
         <br><br>
-        <button class="bbutton" [disabled]="!createBlogForm.valid">Create</button>
+        <div class="row">
+            <div class="col col-6">
+                <input type="text" placeholder="Image link" formControlName="image" class="tri-text-input w100"/>
+            </div>
+            <div class="col col-6">
+
+            </div>
+        </div>
+        <br><br>
+        <button class="bbutton">Create</button>
     </form>
 </div>

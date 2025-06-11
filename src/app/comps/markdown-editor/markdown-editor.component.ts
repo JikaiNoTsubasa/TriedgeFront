@@ -16,9 +16,17 @@ import { NG_VALUE_ACCESSOR } from '@angular/forms';
 })
 export class MarkdownEditorComponent {
 
-  content: string = '';
+  @Input() content: string = '';
+  @Input() placeholder: string = 'Content';
+  @Input() contentRows: number = 4;
+
   private onChange = (value: string | null) => {};
   private onTouched = () => {};
+
+  onUpdateContent(event: Event) {
+    this.content = (event.target as HTMLTextAreaElement).value;
+    this.onChange(this.content);
+  }
 
   writeValue(value: string | null): void {
     this.content = value || '';

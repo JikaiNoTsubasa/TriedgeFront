@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { MarkdownModule } from 'ngx-markdown';
 import { MarkdownEditorComponent } from "../../comps/markdown-editor/markdown-editor.component";
+import { TriService } from '../../services/TriService';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-create-blog',
@@ -11,12 +12,33 @@ import { MarkdownEditorComponent } from "../../comps/markdown-editor/markdown-ed
 })
 export class CreateBlogComponent {
 
+  triService = inject(TriService);
+  router = inject(Router);
+
   createBlogForm = new FormGroup({
     name: new FormControl('', Validators.required),
     content: new FormControl('', Validators.required),
+    image: new FormControl(''),
   });
 
-  onSubmit(){
-
+  onSubmitCreate(){
+    if (this.createBlogForm.valid) {
+      let title: string = this.createBlogForm.value.name ?? '';
+      let content: string = this.createBlogForm.value.content ?? '';
+      let image: string | undefined = this.createBlogForm.value.image ?? undefined;
+      this.triService.createBlog(title, content, image).subscribe({
+        next: (blog) => {
+          console.log(blog);
+          this.createBlogForm.reset();
+          this.router.navigate(['manage-blogs']);
+        },
+        error: (e) => {
+        },
+        complete: () => {
+        }
+      });
+    }else{
+      console.log('Invalid form');
+    }
   }
 }
