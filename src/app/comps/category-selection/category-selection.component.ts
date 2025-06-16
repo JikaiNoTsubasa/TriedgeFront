@@ -1,8 +1,9 @@
-import { Component, ElementRef, forwardRef, inject } from '@angular/core';
+import { Component, ElementRef, forwardRef, inject, ViewChild } from '@angular/core';
 import { TriService } from '../../services/TriService';
 import { ControlValueAccessor, FormsModule, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { Category } from '../../models/Category';
 import { CommonModule } from '@angular/common';
+import { firstValueFrom } from 'rxjs';
 
 @Component({
   selector: 'category-selection',
@@ -22,11 +23,16 @@ export class CategorySelectionComponent implements ControlValueAccessor{
 
   constructor(private eRef: ElementRef) {}
 
+  @ViewChild('inputNewCategory') inputNewCategory: ElementRef<HTMLInputElement> | undefined;
+
   private onChange = (value: number[] | null) => {};
   private onTouched = () => {};
 
-  writeValue(categoryIds: number[]): void {
+  async writeValue(categoryIds: number[]): Promise<void> {
     this.selectedCategories = [];
+    if (this.categories == null || this.categories.length == 0) {
+      this.categories = await firstValueFrom(this.triService.fetchAllCategories());
+    }
     // Find categories with the given ids
     this.categories?.forEach((c) => {
       if (categoryIds.includes(c.id)) {
@@ -49,6 +55,8 @@ export class CategorySelectionComponent implements ControlValueAccessor{
   selectedCategory: Category;
   selectedValues: number[] = [];
   selectedCategories: Category[] = [];
+  isCatOpen: boolean = false;
+  isCatPublished: boolean = false;
 
   onChangeValue(){
     this.addCategory(this.selectedCategory);
@@ -67,12 +75,13 @@ export class CategorySelectionComponent implements ControlValueAccessor{
   removeCategory(category: Category) {
     this.selectedCategories = this.selectedCategories.filter((c) => c.id != category.id);
     this.categories?.push(category);
+    this.onChange(this.selectedCategories.map((c) => c.id));
   }
 
   refreshCategories() {
     this.triService.fetchAllCategories().subscribe({
       next: (data) => {
-        this.categories = data;
+        this.categories = data.filter((c) => !this.selectedCategories.some((sc) => sc.id == c.id));
       },
       error: (e) => {
         console.error(e);
@@ -80,5 +89,42 @@ export class CategorySelectionComponent implements ControlValueAccessor{
       complete: () => {
       }
     });
+  }
+
+  openNewCategory() {
+    if (this.inputNewCategory) this.inputNewCategory.nativeElement.style.display = 'block';
+    this.inputNewCategory?.nativeElement.focus();
+    this.isCatOpen = true;
+  }
+
+  closeNewCategory() {
+    if (this.inputNewCategory) this.inputNewCategory.nativeElement.style.display = 'none';
+    this.isCatOpen = false;
+  }
+
+  onNewCategory($event: any) {
+    let content = $event.target.value.trim();
+    if (content.length > 0) {
+      this.triService.createCategory(content).subscribe({
+        next: (data) => {
+          this.refreshCategories();
+          this.closeNewCategory();
+          this.showTimedPublished();
+        },
+        error: (e) => {
+          console.error(e);
+        },
+        complete: () => {
+        }
+      });
+    }
+
+  }
+
+  showTimedPublished(){
+    this.isCatPublished = true;
+    setTimeout(() => {
+      this.isCatPublished = false;
+    }, 3000);
   }
 }

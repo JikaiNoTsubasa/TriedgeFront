@@ -44,27 +44,39 @@ export class TriService {
         return this.http.get<Blog>(`${this.getEnvUrl()}/api/myblog/${id}`);
     }
 
-    createBlog(title: string, content: string, image?: string): Observable<Blog> {
+    createBlog(title: string, content: string, image?: string, categories?: number[]): Observable<Blog> {
         let data: any = {};
         data.title = title;
         data.content = content;
         if (image){
             data.image = image;
         }
+        if (categories){
+            data.categoryIds = categories; //.join(',');
+        }
         return this.http.post<Blog>(`${this.getEnvUrl()}/api/blog`, data);
     }
 
-    updateMyBlog(id: number, title: string, content: string, image?: string): Observable<Blog> {
+    updateMyBlog(id: number, title: string, content: string, image?: string, categories?: number[]): Observable<Blog> {
         let data: any = {};
         data.title = title;
         data.content = content;
         if (image){
             data.image = image;
+        }
+        if (categories){
+            data.categoryIds = categories;
         }
         return this.http.put<Blog>(`${this.getEnvUrl()}/api/myblog/${id}`, data);
     }
 
     fetchAllCategories():Observable<Category[]> {
         return this.http.get<Category[]>(`${this.getEnvUrl()}/api/categories`);
+    }
+
+    createCategory(name: string): Observable<Category> {
+        let data: any = {};
+        data.name = name;
+        return this.http.post<Category>(`${this.getEnvUrl()}/api/category`, data);
     }
 }

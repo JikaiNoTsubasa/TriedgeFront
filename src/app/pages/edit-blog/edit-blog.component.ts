@@ -6,11 +6,12 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { MarkdownEditorComponent } from '../../comps/markdown-editor/markdown-editor.component';
 import { CommonModule } from '@angular/common';
 import { BlogStatusPipe } from "../../pipes/blog-status.pipe";
+import { CategorySelectionComponent } from '../../comps/category-selection/category-selection.component';
 
 @Component({
   selector: 'app-edit-blog',
   standalone: true,
-  imports: [ReactiveFormsModule, MarkdownEditorComponent, CommonModule, BlogStatusPipe, RouterModule],
+  imports: [ReactiveFormsModule, MarkdownEditorComponent, CommonModule, BlogStatusPipe, RouterModule, CategorySelectionComponent],
   templateUrl: './edit-blog.component.html',
   styleUrl: './edit-blog.component.scss'
 })
@@ -27,6 +28,7 @@ export class EditBlogComponent {
     name: new FormControl('', Validators.required),
     content: new FormControl('', Validators.required),
     image: new FormControl(''),
+    categories: new FormControl<number[]>([])
   });
 
   ngOnInit(){
@@ -43,6 +45,7 @@ export class EditBlogComponent {
           name: this.blog.title,
           content: this.blog.content,
           image: this.blog.image,
+          categories: this.blog.categories?.map((c) => c.id) ?? []
         });
       },
       error: (e) => {
@@ -59,7 +62,8 @@ export class EditBlogComponent {
       let title: string = this.editBlogForm.value.name ?? '';
       let content: string = this.editBlogForm.value.content ?? '';
       let image: string | undefined = this.editBlogForm.value.image ?? undefined;
-      this.triService.updateMyBlog(this.blog?.id ?? 0, title, content, image).subscribe({
+      let cats: number[] = this.editBlogForm.value.categories ?? [];
+      this.triService.updateMyBlog(this.blog?.id ?? 0, title, content, image, cats).subscribe({
         next: (blog) => {
           this.refreshBlog();
         },

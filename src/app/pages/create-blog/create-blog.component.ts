@@ -28,7 +28,8 @@ export class CreateBlogComponent {
       let title: string = this.createBlogForm.value.name ?? '';
       let content: string = this.createBlogForm.value.content ?? '';
       let image: string | undefined = this.createBlogForm.value.image ?? undefined;
-      this.triService.createBlog(title, content, image).subscribe({
+      let cats: number[] = this.createBlogForm.value.categories ?? [];
+      this.triService.createBlog(title, content, image, cats).subscribe({
         next: (blog) => {
           console.log(blog);
           this.createBlogForm.reset();
