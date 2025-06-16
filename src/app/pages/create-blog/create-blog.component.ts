@@ -3,10 +3,11 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { MarkdownEditorComponent } from "../../comps/markdown-editor/markdown-editor.component";
 import { TriService } from '../../services/TriService';
 import { Router } from '@angular/router';
+import { CategorySelectionComponent } from "../../comps/category-selection/category-selection.component";
 
 @Component({
   selector: 'app-create-blog',
-  imports: [ReactiveFormsModule, MarkdownEditorComponent],
+  imports: [ReactiveFormsModule, MarkdownEditorComponent, CategorySelectionComponent],
   templateUrl: './create-blog.component.html',
   styleUrl: './create-blog.component.scss'
 })
@@ -19,6 +20,7 @@ export class CreateBlogComponent {
     name: new FormControl('', Validators.required),
     content: new FormControl('', Validators.required),
     image: new FormControl(''),
+    categories: new FormControl([])
   });
 
   onSubmitCreate(){

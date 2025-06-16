@@ -166,6 +166,22 @@ body{
     outline: none;
 }
 
+.tri-select-input{
+    color: $fg-main;
+    background: none;
+    border: 0;
+    border-bottom: 1px solid $fg-primary;
+    padding: 5px;
+    box-sizing: border-box;
+    outline: none;
+
+    .tri-option{
+        color: $fg-primary;
+        background-color: $bg-main;
+        border-radius: 0;
+    }
+}
+
 .hauto{
     height: auto;
 }

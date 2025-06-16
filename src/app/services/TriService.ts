@@ -5,6 +5,7 @@ import { Observable } from "rxjs";
 import { Blog } from "../models/Blog";
 import { ResponseLogin } from "../models/DTO/ResponseLogin";
 import { User } from "../models/User";
+import { Category } from "../models/Category";
 
 @Injectable({
     providedIn: 'root'
@@ -61,5 +62,9 @@ export class TriService {
             data.image = image;
         }
         return this.http.put<Blog>(`${this.getEnvUrl()}/api/myblog/${id}`, data);
+    }
+
+    fetchAllCategories():Observable<Category[]> {
+        return this.http.get<Category[]>(`${this.getEnvUrl()}/api/categories`);
     }
 }

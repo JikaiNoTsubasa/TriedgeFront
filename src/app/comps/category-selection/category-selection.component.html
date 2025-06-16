@@ -1,0 +1,6 @@
+<select [(ngModel)]="selectedCategory" class="tri-select-input w100" [(ngModel)]="selectedCategory" (change)="onChangeValue()">
+    <option *ngFor="let category of categories" [ngValue]="category" class="tri-option">{{category.name}}</option>
+</select>
+<br *ngIf="selectedCategories.length > 0">
+<br *ngIf="selectedCategories.length > 0">
+<span class="tri-select-chip" *ngFor="let category of selectedCategories">{{category.name}} <i class="fa-solid fa-xmark" (click)="removeCategory(category)"></i></span>

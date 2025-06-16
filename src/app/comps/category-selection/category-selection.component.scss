@@ -1,0 +1,11 @@
+@use '../../styles/variables' as *;
+
+.tri-select-chip{
+    display: inline-block;
+    background-color: $bg-primary;
+    color: $fg-main;
+    padding: 5px 10px;
+    border-radius: 20px;
+    margin-right: 5px;
+    font-size: 12px;
+}
