@@ -1,0 +1,10 @@
+<div class="tri-page">
+    <h1>Profile</h1>
+    <br><br>
+    Update password:
+    <input type="password" [(ngModel)]="password" class="tri-text-input w100"/>
+    <br><br>
+    <button class="bbutton" (click)="onUpdatePassword()">Update password</button>
+    <span *ngIf="error != null" style="color: red;">{{error}}</span>
+    <span *ngIf="message != null" style="color: green;">{{message}}</span>
+</div>

@@ -83,4 +83,13 @@ export class TriService {
         data.name = name;
         return this.http.post<Category>(`${this.getEnvUrl()}/api/category`, data);
     }
+
+    //#region Profile
+    updateMyPassword(password: string): Observable<User> {
+        let data = new FormData();
+        data.append('password', password);
+        console.log(data);
+        return this.http.patch<User>(`${this.getEnvUrl()}/api/profile/password`, data);
+    }
+    //#endregion
 }
