@@ -70,6 +70,10 @@ export class TriService {
         return this.http.put<Blog>(`${this.getEnvUrl()}/api/myblog/${id}`, data);
     }
 
+    deleteMyBlog(id: number): Observable<any> {
+        return this.http.delete<any>(`${this.getEnvUrl()}/api/myblog/${id}`);
+    }
+
     fetchAllCategories():Observable<Category[]> {
         return this.http.get<Category[]>(`${this.getEnvUrl()}/api/categories`);
     }

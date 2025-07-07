@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { TriService } from '../../services/TriService';
-import { ActivatedRoute, RouterModule } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { Blog } from '../../models/Blog';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MarkdownEditorComponent } from '../../comps/markdown-editor/markdown-editor.component';
@@ -19,6 +19,7 @@ export class EditBlogComponent {
 
   triService = inject(TriService);
   route = inject(ActivatedRoute);
+  router = inject(Router);
 
   message: string | null = null;
 
@@ -92,6 +93,15 @@ export class EditBlogComponent {
   }
 
   onDelete(){
-
+    this.triService.deleteMyBlog(this.blog?.id ?? 0).subscribe({
+      next: (data) => {
+      },
+      error: (e) => {
+        this.showMessageTimed((e as Error).message);
+      },
+      complete: () => {
+        this.router.navigate(['manage-blogs']);
+      }
+    })
   }
 }

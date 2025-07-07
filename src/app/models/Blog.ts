@@ -13,6 +13,7 @@ export interface Blog {
     owner: User;
     categories: Category[] | null;
     status: BlogStatus;
+    viewed: number;
 }
 
 export enum BlogStatus {

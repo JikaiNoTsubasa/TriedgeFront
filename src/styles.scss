@@ -226,3 +226,9 @@ body{
     max-width: 100% !important;
   }
 }
+
+pre{
+    //border: 1px solid $fg-primary;
+    background-color: $bg-pre;
+    padding: 10px;
+}

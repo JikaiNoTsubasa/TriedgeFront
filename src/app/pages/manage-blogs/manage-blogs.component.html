@@ -10,6 +10,7 @@
             <th>Created</th>
             <th>Updated</th>
             <th>Published</th>
+            <th>Views</th>
             <th>Actions</th>
         </tr>
         <tr *ngFor="let blog of blogs">
@@ -19,6 +20,7 @@
             <td>{{blog.createdAt | date: 'dd/MM/yyyy HH:mm'}}</td>
             <td>{{blog.updatedAt | date: 'dd/MM/yyyy HH:mm'}}</td>
             <td>{{blog.publishedDate | date: 'dd/MM/yyyy HH:mm'}}</td>
+            <td>{{blog.viewed}}</td>
             <td>
                 <a routerLink="/manage-blogs/edit/{{blog.id}}" class="tri-link"><i class="fa-solid fa-pen-to-square"></i> Edit</a>
             </td>
