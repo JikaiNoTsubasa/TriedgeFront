@@ -18,15 +18,19 @@ export class BlogViewComponent {
 
   blog: Blog | null = null;
 
+  loadingBlog: boolean = false;
+
   ngOnInit(){
     this.refreshBlog();
   }
 
   refreshBlog(){
+    this.loadingBlog = true;
     const slug = this.route.snapshot.paramMap.get('slug');
     this.triService.fetchBlogBySlug(slug ?? '').subscribe({
       next: (data) => {
         this.blog = data;
+        this.loadingBlog = false;
       },
       error: (e) => {
         

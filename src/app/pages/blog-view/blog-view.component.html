@@ -9,6 +9,9 @@
 
     </div>
 </div>
-<div class="tri-page" *ngIf="blog == null">
+<div class="tri-page" *ngIf="blog == null && loadingBlog == false">
     <h1>No blog found</h1>
+</div>
+<div class="tri-page" *ngIf="loadingBlog == true">
+    Loading...
 </div>
